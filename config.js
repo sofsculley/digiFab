@@ -1,5 +1,5 @@
 var config = {
-  student_name: "Sofia Sculleu"
+  student_name: "Sofia Sculley"
   student_year_sem: "Summer 20256", 
   student_email: "sofia.sculley@gmail.com", 
 
