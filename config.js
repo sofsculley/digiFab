@@ -1,11 +1,11 @@
 var config = {
-  student_name: "Sofia Sculley"
-  student_year_sem: "Summer 20256", 
-  student_email: "sofia.sculley@gmail.com", 
+  student_name: "Sofia Sculley",
+  student_year_sem: "Summer 2026",
+  student_email: "sofia.sculley@gmail.com",
 
-  background_color: "#181818",
-  text_color: "#dedede",
-  accent_color: "#FFFFFF",
+  background_color: "#b64343",
+  text_color: "#00fe22",
+  accent_color: "#c1e0bc",
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
   font_family: "Fraunces",
