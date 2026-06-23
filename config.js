@@ -3,9 +3,9 @@ var config = {
   student_year_sem: "Summer 2026",
   student_email: "sofia.sculley@gmail.com",
 
-  background_color: "#b64343",
-  text_color: "#00fe22",
-  accent_color: "#c1e0bc",
+  background_color: "#f3efef",
+  text_color: "#2b2a2a",
+  accent_color: "#3598a1",
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
   font_family: "Fraunces",
