@@ -8,8 +8,8 @@ var config = {
   accent_color: "#FFFFFF",
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
-  font_family: "Space Grotesk",
-  code_font_family: "DM Sans", 
+  font_family: "Fraunces",
+  code_font_family: "Sora", 
 };
 
 document.title = `${config.student_name}'s PS70 Website`;
