@@ -1,15 +1,15 @@
 var config = {
-  student_name: "YOUR NAME", // ie. John Doe
-  student_year_sem: "YOUR YEAR AND SEMESTER", // ie. Fall 2025
-  student_email: "YOUR EMAIL", // ie. jdoe@college.harvard.edu
+  student_name: "Sofia Sculley"
+  student_year_sem: "Summer 20256", 
+  student_email: "sofia.sculley@gmail.com", 
 
   background_color: "#181818",
   text_color: "#dedede",
   accent_color: "#FFFFFF",
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
-  font_family: "Lato",
-  code_font_family: "Roboto Mono"
+  font_family: "Fraunces",
+  code_font_family: "Sora", 
 };
 
 document.title = `${config.student_name}'s PS70 Website`;
