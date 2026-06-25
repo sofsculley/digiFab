@@ -8,7 +8,8 @@ var config = {
   accent_color: "#3598a1",
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
-  font_family: "Fraunces",
+  display_font_family: "Fraunces", 
+  font_family: "Noto Sans",
   code_font_family: "Sora", 
 };
 
@@ -33,6 +34,11 @@ document.documentElement.style.setProperty(
 document.documentElement.style.setProperty(
   "--mono-font-family",
   config.code_font_family
+);
+
+document.documentElement.style.setProperty(
+  "--display-font-family",
+  config.display_font_family
 );
 
 document.querySelector("footer").innerHTML = `
