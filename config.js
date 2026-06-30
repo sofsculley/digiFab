@@ -9,7 +9,7 @@ var config = {
 
   // Make sure to add the @import from Google Fonts to style.css, ask if you need help!
   display_font_family: "Fraunces", 
-  font_family: "Noto Sans",
+  font_family: "Roboto",
   code_font_family: "Sora", 
 };
 
