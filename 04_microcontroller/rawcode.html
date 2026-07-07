@@ -1,5 +1,61 @@
 <link rel="stylesheet" href="../style.css">
 
-<pre><code>// Put your code here
-Serial.print("Hello World!");
-</code></pre>
+<pre><code>
+const int AIA = D5;
+const int AIB = D6;
+const int ledPin = D7;
+const int buttonPin = D8;
+
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(AIA, OUTPUT);
+  pinMode(AIB, OUTPUT);
+  reset();
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  int ButtonState = digitalRead(buttonPin);
+  Serial.println(ButtonState);
+  if (ButtonState == LOW) {
+    digitalWrite(ledPin, HIGH);
+    for (int i=0; i<3; i++) {
+       spinOut()
+       delay(2000);
+       stop()
+       delay(10);
+       spinIn()
+       delay(2000);
+    }
+  } else {
+    reset();
+  }
+
+}
+
+void reset() {
+  stop()
+  digitalWrite(ledPin, LOW);
+
+}
+
+void spinOut() {
+  digitalWrite(AIB, LOW);
+  digitalWrite(AIB, HIGH);
+
+}
+
+void spinIn() {
+  digitalWrite(AIB, LOW);
+  digitalWrite(AIB, LOW);
+}
+
+void stop() {
+  digitalWrite(AIB, HIGH);
+  digitalWrite(AIB, LOW);
+}
+</code>
+</pre>
