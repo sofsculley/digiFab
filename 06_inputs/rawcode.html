@@ -1,61 +1,58 @@
 <link rel="stylesheet" href="../style.css">
 
 <pre><code>
-const int AIA = D5;
-const int AIB = D6;
-const int ledPin = D7;
-const int buttonPin = D8;
+#include <ESP32Servo.h>
 
+class Sweeper {
+  Servo servo;
+  int pin;
 
-void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
-  pinMode(AIA, OUTPUT);
-  pinMode(AIB, OUTPUT);
-  reset();
+  public:
+  Sweeper(int pin) {
+    this->pin = pin;
+    servo.attach(pin);
+    pinMode(pin, INPUT);
+  }
+
+  void update(int light) {
+    int amount = map(light, 0, 40, 0, 180);
+    servo.write(amount);
+  }
+
+};
+
+class Photo {
+  int pin; 
+
+  public:
+  Photo(int pin) {
+    this->pin = pin;
+    pinMode(pin, OUTPUT);
+  }
+
+  int getLight() {
+    int light = analogRead(pin);
+    light += 50;
+    light /= 50;
+    Serial.println(light);
+    return light;
+  }
+
+};
+
+const int photoPin = A0;
+const int servoPin = D6;
+Photo photo(photoPin);
+Sweeper servo(servoPin);
+
+void setUp(){
   Serial.begin(9600);
-
 }
 
 void loop() {
-  int ButtonState = digitalRead(buttonPin);
-  Serial.println(ButtonState);
-  if (ButtonState == LOW) {
-    digitalWrite(ledPin, HIGH);
-    for (int i=0; i<3; i++) {
-       spinOut()
-       delay(2000);
-       stop()
-       delay(10);
-       spinIn()
-       delay(2000);
-    }
-  } else {
-    reset();
-  }
-
+  int light = photo.getLight();
+  servo.update(light);
 }
 
-void reset() {
-  stop()
-  digitalWrite(ledPin, LOW);
-
-}
-
-void spinOut() {
-  digitalWrite(AIB, LOW);
-  digitalWrite(AIB, HIGH);
-
-}
-
-void spinIn() {
-  digitalWrite(AIB, LOW);
-  digitalWrite(AIB, LOW);
-}
-
-void stop() {
-  digitalWrite(AIB, HIGH);
-  digitalWrite(AIB, LOW);
-}
 </code>
 </pre>
