@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="../style.css">
+
+<pre><code>
+#include <ESP32Servo.h>
+
+class Sweeper {
+  Servo servo;
+  int pin;
+
+  public:
+  Sweeper(int pin) {
+    this->pin = pin;
+    servo.attach(pin);
+    pinMode(pin, INPUT);
+  }
+
+  void update(int light) {
+    int amount = map(light, 0, 40, 0, 180);
+    servo.write(amount);
+  }
+
+};
+
+class Photo {
+  int pin; 
+
+  public:
+  Photo(int pin) {
+    this->pin = pin;
+    pinMode(pin, OUTPUT);
+  }
+
+  int getLight() {
+    int light = analogRead(pin);
+    light += 50;
+    light /= 50;
+    Serial.println(light);
+    return light;
+  }
+
+};
+
+const int photoPin = A0;
+const int servoPin = D6;
+Photo photo(photoPin);
+Sweeper servo(servoPin);
+
+void setUp(){
+  Serial.begin(9600);
+}
+
+void loop() {
+  int light = photo.getLight();
+  servo.update(light);
+}
+
+</code>
+</pre>
