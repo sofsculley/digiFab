@@ -1,57 +1,132 @@
 <link rel="stylesheet" href="../style.css">
 
 <pre><code>
-#include <ESP32Servo.h>
+#include <esp32Servo.h>, <KickMath.h>, <random>;
 
-class Sweeper {
-  Servo servo;
-  int pin;
+const int xPPin = D1;
+const int yPPin = D2;
+const int zPPin = D3;
+const int xNPin = D4;
+const int yNPin = D5;
+const int zNPin = D6;
 
-  public:
-  Sweeper(int pin) {
-    this->pin = pin;
-    servo.attach(pin);
-    pinMode(pin, INPUT);
-  }
+// in cm, s, and g as expected
+const double WEIGHT_DIST = 5;
+const double BRAIN_LEN = 5;
+const double DIAM = WEIGHT_DIST * 2 + BRAIN_LEN;
+const double RAD = DIAM / 2;
+const double MASS = 200;
 
-  void update(int light) {
-    int amount = map(light, 0, 40, 0, 180);
-    servo.write(amount);
-  }
 
-};
+Ball ball(MASS, RAD);
 
-class Photo {
-  int pin; 
-
-  public:
-  Photo(int pin) {
-    this->pin = pin;
-    pinMode(pin, OUTPUT);
-  }
-
-  int getLight() {
-    int light = analogRead(pin);
-    light += 50;
-    light /= 50;
-    Serial.println(light);
-    return light;
-  }
-
-};
-
-const int photoPin = A0;
-const int servoPin = D6;
-Photo photo(photoPin);
-Sweeper servo(servoPin);
-
-void setUp(){
-  Serial.begin(9600);
-}
+void setup() {}
 
 void loop() {
-  int light = photo.getLight();
-  servo.update(light);
+  targetAcceleration();
+  accelerate();
+}
+
+class Ball {
+  Weight XPos, XNeg, YPos, YNeg, ZPos, ZNeg;
+  double mass, diam;  // weight in grams, diam in cm
+  double targetAcc;
+
+public:
+  Ball(double mass, double diam) {
+    this->mass = mass;
+    this->diam = diam;
+    Weight XPos(xPPin, 1);
+    Weight XNeg(xNPin, -1);
+    Weight YPos(yPPin, 1);
+    Weight YNeg(yNPin, -1);
+    Weight ZPos(zPPin, 1);
+    Weight ZNeg(zNPin, -1);
+  }
+
+  double getAcceleration() {
+    /// TODO: write a function that calculates the current acceleration
+    // Iα = m*g*X such that X = the distance from the center of mass to the orgin
+    // a = R*m*g*X/I = g*X/R*i (where i such that I = iMRR)
+    return 9.8 * getAbsXCM() / (RAD * getInertia());
+  }
+
+  void accelerate() {  // cm/s/s
+    targetAcc = acceleration;
+  }
+
+  double getAbsXCM() {
+    /// get the distance from the orgin to the center of mass
+    double[] XCM = getXCM();
+    double x, y, z;
+    x = XCM[0];
+    y = XCM[1];
+    z = XCM[2];
+    return sqrt(x * x + y * y + z * z);
+  }
+
+  double[] getXCM() {
+    double x, y, z;
+    x = getAvg(XPos, XNeg);
+    y = getAvg(YPos, YNeg);
+    z = getAvg(ZPos, ZNeg);
+    return { x, y, z };
+  }
+
+
+  double getInertia() {
+    /// TODO: get moment of intertia (as in, return i such that I = iMRR)
+    return 0.4;  /// THIS IS NOT ACTUALLY IT
+  }
+}
+
+class Weight {
+  Servo servo;
+  int pin;
+  double dist;   /// abs distance from the center
+  int dir;       // direction (+/-1)
+  String plane;  // "X", "Y", "Z"
+
+public:
+  Weight(int pin, int dir) {
+    this->pin = pin;
+    pinMode(pin, OUTPUT);
+    servo.attach(pin);
+    this->dir = dir;
+    double dist = WEIGHT_DISTANCE;
+  };
+
+  double getAvg(Weight pos, Weight neg) {
+    return (pos.dist - neg.dist) / 2;
+  }
+}
+
+/// This will be handled by radio input later but that's more math and such
+void
+targetAcceleration() {
+  /// EFFECT: changes the target acceleration
+  long currentMillis = millis();
+  double acc = ball.targetAcc;
+  if (currentMillis % 4000 == 0) {
+    acc = getRandomAcc();
+  }
+  ball.targetAcc = acc;
+}
+
+double getRandomAcc() {
+  std::random_device rd;
+
+  // 2. Initialize the standard Mersenne Twister engine with the seed
+  std::mt19937 gen(rd());
+
+  // 3. Define the distribution range [inclusive, inclusive]
+  std::uniform_int_distribution<int> distrib(-100, 100);
+
+  // 4. Generate the random number
+  int random_num = distrib(gen);
+
+  std::cout << "Random Number: " << random_num << std::endl;
+  return 0;
 }
 
 </code>

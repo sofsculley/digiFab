@@ -18,7 +18,10 @@
     <section class="blog">
       <h1>Week 9: Networking</h1>
 
-      <p>Working with a partner or group of 3, program something that makes use of the radio, Wifi, or bluetooth capabilities of the ESP32. Only one person per group needs to have documentation on their website. Everyone else should provide a link to that person's documentation.</p>
+      <p>This week, Ethan, Emma, Arden and myself decided to make horrible texting devices. Our plan was to create a horrible, portable system with three features: a speaker, to loudly and mandatorally broadcast messages; a potentiometer, to make sending messages as inefficient as possible; and a button, to send texts and confirm letter choices. We started by making the pot keyboard, which took an embarrasingly long time to debug. That was a lot of fun to do -- Emma and Arden handled most of the wiring on that, while Ethan and I fought C++. I then spent a while trying to do the TTS, which, after battling github libraries, Spanish, and Wifi (the initial plan was to use wifi, don't ask, I'm still traumatized by that hour and a half of failure), we had to cut our losses and admit defeat -- we're planning on completing it later. Luckily, we'd already managed to make the xiaos talk to each other, and we can send messages (typed very ineffeciently on our horrible hardware) to Serials. We do want to finish this set of bad-phones for the bit, so this will be completed at some point soon!  </p>
+      <p>The first step was the keyboard. We quickly wired up a breadboard with a button, speaker, and pot, and then wrote up some code. This project was an expermient in vibecoding for me, so after writing the initial keyboard code, we used Claude to debug (terrible idea, by the way, it wound up ruining everything and we had to restart).  <a href="./keyboardcode.html" target="_blank"> Here's the keyboard code. </a> </p> 
+      <p>(We didn't learn the vibe coding lesson, and completely vibecoded the TTS -- it didn't work. Not only that, but Github libraries were a mess, the xiaos wound up not having DACs (we bought new ones), and they kept refusing to connect to the wifi (which it wanted for tts). We managed to make the speaker make some noise, but otherwise, this is a TBD sort of project.</p>
+      <p> Sidequest: During this project, Arden went </p>
       
     </section>
   </body>
