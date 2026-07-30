@@ -1,0 +1,101 @@
+class Keyboard {
+  private:
+    int potPin, confirm;
+    String message;
+    String user;
+    String blank;
+    
+    int lastSwitchState = HIGH;      // Remembers the last read state
+    unsigned long toggleStartTime = 0; // Remembers when the toggle was flipped ON
+    
+    static constexpr const char* letters[28] = { 
+      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+      "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", 
+      " ", "crying emoji" 
+    };
+
+  public:
+    Keyboard(int p, int c, String u) {
+      potPin = p; 
+      confirm = c;
+      user = u;
+      blank = "Message from " + u + ": ";
+      message = blank;
+    }
+
+    void begin() {
+      pinMode(potPin, INPUT);
+      pinMode(confirm, INPUT_PULLUP);
+      lastSwitchState = digitalRead(confirm); // Initialize default state
+    }
+
+    // Checks if the toggle switch state changed and returns the duration it stayed ON
+    unsigned long getToggleDuration() {
+      int currentState = digitalRead(confirm);
+      unsigned long duration = 0;
+
+      // Detect FLIP ON (Transition from HIGH to LOW)
+      if (currentState == LOW && lastSwitchState == HIGH) {
+        toggleStartTime = millis();
+        Serial.println("Toggle Flipped ON...");
+      } 
+      // Detect FLIP OFF (Transition from LOW to HIGH)
+      else if (currentState == HIGH && lastSwitchState == LOW) {
+        duration = millis() - toggleStartTime;
+        Serial.println("Toggle Flipped OFF!");
+      }
+
+      lastSwitchState = currentState; // Save current state for next loop iteration
+      return duration; // Returns > 0 only on the cycle the toggle is flipped back OFF
+    }
+
+    void type() {
+      String letter = getLetter();
+      Serial.println("Letter selected: " + letter);
+      message += letter;
+    }
+
+    void send() {
+      if (message != blank) {
+        Serial.println("\n--- MESSAGE SENT ---");
+        Serial.println(message);
+        Serial.println("--------------------\n");
+        message = blank; // Reset message after sending
+      }
+    }
+
+    String getLetter() {
+      int potSignal = analogRead(potPin);
+      int val = map(potSignal, 0, 1024, 0, 28);
+      val = constrain(val, 0, 27);
+      return String(letters[val]);
+    }
+};
+
+// Use pin 6 for standard Arduino boards
+Keyboard keys(A0, D6, "Arden");
+
+void setup() {
+  Serial.begin(9600);
+  keys.begin();
+}
+
+void loop() {
+  // Non-blocking check for toggle duration
+  unsigned long length = keys.getToggleDuration();
+
+  // If a valid toggle duration was calculated (when switch was flipped off)
+  if (length > 0) {
+    Serial.print("Toggle was active for: ");
+    Serial.print(length);
+    Serial.println(" ms");
+
+    if (length >= 2000) {
+      Serial.println("Action: Send Message");
+      keys.send();
+    } else if (length >= 50) { // Debounce threshold
+      Serial.println("Action: Type Letter");
+      keys.type();
+    }
+  }
+}
