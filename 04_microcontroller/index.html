@@ -22,18 +22,22 @@
        I decided to make a little dragon that would come to life if you tried to steal his treasure. 
        I was inspired by one of the examples, which used a piezo to open a door when knocked on. To show that he was paying attention, the dragon would move its wings and its eyes would light up.</p>
       <p> I started with playing around with the wing mechanism. I settled on a bit of a ridiculous method, using strings on screws (attached to a motor) to pull down the wings, which would then be released, and snap back together with a spring. (I then went on a detour to try and do the exact physics of it, before my friend Charles pointed out that I was just procrastinating and did not need to know the exact torque needed. Here's me having fun finding the spring constant anyways). </p>
-      <img src="/Assets/IMG_0506.jpeg" alt="spring constan finding" width="200px">
-      <img src="/Assets/IMG_0507.jpeg" alt="spring constan finding" width="200px">
-      <img src="/Assets/IMG_0508.jpeg" alt="proof of concept" width="200px">
+      <img src="./Assets/IMG_0506.jpeg" alt="spring constan finding" width="200px">
+      <img src="./Assets/IMG_0507.jpeg" alt="spring constan finding" width="200px">
+      <img src="./Assets/IMG_0508.jpeg" alt="proof of concept" width="200px">
 
       <p> Once I was satisfied that this could theoretically work, I moved on to programming the microcontroller. I decided to start by making sure that I could do it with a button, and spent a while trying to figure out how to run multiple circuts simulatenously. I ran into a bit of a snafu day of, when I realized that my code had disappeared off the face of the planet, but oh well. Here's my code, a video of me panicking when I accidentally made a touch sensor, and my final circut (with button). </p>
-      <img src="/Assets/IMG_0545.jpeg" alt="working" width="200px">
+      <img src="./Assets/IMG_0545.jpeg" alt="working" width="200px">
       <img src="/Assets/IMG_0546.jpeg" alt="breadboard" width="200px">
 
       <p> After I did that, I designed the dragon. He's kinda chopped, but he's draconic if you squint. Currently, he's button opperated, but if I ever have time, I'll give him a touch sensor diamond to hold. </p>
-      <img src = "/Assets/Screenshot 2026-07-07 at 9.07.21 PM.png" alt="dragon design" width="200px">
+      <img src = "./Assets/Screenshot 2026-07-07 at 9.07.21 PM.png" alt="dragon design" width="200px">
       <p> and then timing got the better of me. I started making an MVP, shown below, but the laser cutter set on fire before I had time to finish it. I'm going to finish this as soon as possible, but unfortunately, I haven't finished yet!).</p>
-      <img src = "/Assets/Screenshot 2026-07-07 at 9.07.25 PM.png" alt="dragon" width="200px">
+      <img src = "./Assets/Screenshot 2026-07-07 at 9.07.25 PM.png" alt="dragon" width="200px">
+
+      <p><a href="rawcode.html" download>Code</a></p>
+
+      <p>(Evidentally, I never finished this project. The code, which I also apparently never linked, , and, if I never wound up making that breadboard, it would be quite simple -- simply connect the piezo to A0 and power line, and the DC Motor (even though Servos would be smarter) to an L9110, and attach to any non-power pins (and hook up to the power). Attach an LED to the power/ground line, in the same circuit part as the piezo. Tada!) </p>
 
 
     </section>

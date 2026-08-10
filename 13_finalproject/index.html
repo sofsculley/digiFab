@@ -10,17 +10,31 @@
 
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Distract-o-Matic 2000</title>
+</head>
+<body>
+
 <h1>The Distract-o-Matic 2000</h1>
 <p><em>PS70 Final Project Documentation</em></p>
+
+<video width="320" height="240" controls>
+  <source src="./Assets/Heading.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 <h2>The Vision</h2>
 <p>Do you wish that at some point in the near future, you might (just maybe) have time to…do anything that isn't play with your border collie puppy? Like, not permanently. Just enough to say, take a nap. Or clean up his mess. Or cook dinner. Or leave the room. Or sit, quietly, hands free of toy and listening to the quiet.</p>
 
 <p>If you couldn't tell, this is a little dream of mine, because I (shocker, I know) have a border collie puppy.</p>
 
-<img src="IMG_3938.jpeg" alt="Frankie the border collie puppy playing with purple toy">
+<img src="./Assets/IMG_3938.jpeg" alt="Frankie the border collie puppy">
 
-<p>His name is <strong>Frankie</strong>, and he's adorable, sweet, and so so energetic. He requires approximately 300 more sheep than exist in Cambridge, Massachusetts, and, in lieu of them, needs to play 24/7.</p>
+<p>His name is Frankie, and he's adorable, sweet, and so so energetic. He requires approximately 300 more sheep than exist in Cambridge, Massachusetts, and, in lieu of them, needs to play 24/7.</p>
 
 <p>What's my grand plan for a moment of rest? Introducing…the <strong>Distract-o-Matic 2000</strong>!</p>
 
@@ -30,91 +44,80 @@
 
 <p>My initial plan was to shift the center of mass to move the ball. I mainly decided to do this because I thought writing the software would be fun, because I really like physics and thought the math would be fun to do. (Holding the center of mass constant relative to the ground seemed like a fun challenge, as did changing the acceleration and direction. Obviously, the smart thing to do would have been to just solve the problem and then do something that wasn't utterly inane.)</p>
 
-<img src="IMG_0630_2.jpeg" alt="Notebook sketch showing ball mechanism with internal chambers and pulley system">
-<p><em>Initial sketch of the center-of-mass shifting mechanism</em></p>
+<img src="./Assets/IMG_0630_2.jpeg" alt="Sketch of ball with internal chambers">
 
-<p>To change the center of mass, I planned to have X-Y-Z chambers, each with its own mass-moving pulley. My MVP was just to see if I could make one of the chambers. To do this, I 3D printed ends and a center moving piece, and hot glued metal rods in to act as guard rails. I hooked it up to a servo, which honestly, if attached better, probably would have worked — that said, due to being blind apparently, I didn't know that we had materials to make actual pulleys in the lab, and so the thick string and textured pipe made not the greatest of simple machine components.</p>
+<p>To change the center of mass, I planned to have X-Y-Z chambers, each with its own mass-moving pulley. My MVP was just to see if I could make one of the chambers. To do this, I 3d printed ends and a center moving piece, and hot glued metal rods in to act as guard rails. I didn't know we had the I hooked it up to a servo, which honestly, if attached better, probably would have worked — that said, due to being blind apparently, I didn't know that we had materials to make actual pulleys in the lab, and so the thick string and textured pipe made not the greatest of simple machine components.</p>
 
-<img src="IMG_1055.jpeg" alt="Internal mechanism showing motor assembly with metal rods and pulley system">
-<p><em>MVP mechanism: motor assembly and internal structure</em></p>
+<img src="./Assets/IMG_0723.jpeg" alt="MVP picture">
 
-<p>After MVP presentations, Nathan suggested I think about how this would work as all six pulleys, and if I had other thoughts on how to make the ball move. After spending quite a while in Thought Experiment land, I realized that any plan using weight change would need at least 3 servos (maybe 2, if I could get a full arc motion thing working), and would weigh quite an awful lot. After a bit, I wound up going back to Nathan and asking what he thought I should do, and he recommended doing a <strong>differential drive</strong>. I listened.</p>
+<p><INSERT: Link to Code with MVP code.></p>
 
-<h2>"Final" Version: Differential Drive</h2>
+<p>After MVP presentations, Nathan suggested I think about how this would work as all six pulleys, and if I had other thoughts on how to make the ball move. After spending quite a while in Thought Experiment land, I realized that any plan using weight change would need at least 3 servos (maybe 2, if I could get a full arc motion thing working), and would weigh quite an awful lot. After a bit, I wound up going back to Nathan and asking what he thought I should do, and he recommended doing a differential drive. I listened.</p>
 
-<p>The end project has a hamster-ball style propulsion mechanism. Making the drive was, theoretically, quite simple. In the end, it has two DC motors, glued together (with a spacer, obviously), with some 3D printed ball bearings and a brain. Attached are two wheels, with O-rings and hot glue added for friction (Nathan's idea—he had so many godsend solutions). The brain has an L9110 connected to a Xiao and a 5V battery pack.</p>
+<h2>"Final" Version</h2>
 
-<img src="IMG_1069.jpeg" alt="Differential drive motor assembly with wheels and O-rings">
-<p><em>The differential drive motor assembly</em></p>
+<img src="./Assets/IMG_0773_2.jpeg" alt="Diff Drive Image">
 
-<p>I did run into a few problems though, and, as such, my project is sitting sadly unworking. I've run through my bugs below.</p>
+<p>The end project has a hamster-ball style propulsion mechanism. Making the drive was, theoretically, quite simple. In the end, it has two DC motors, glued together (with a spacer, obviously), with some 3d printed ball bearings and a brain. Attached are two wheels, with O-rings and hot glue added for friction (Nathan's idea, he had so many godsend solutions). The brain has an L9110 connected to a xiao and a 5V battery pack (D7-10 are attached to AIA-B1B, and they all share a power and ground). I did run into a few problems though, and, as such, my project is sitting sadly unworking. I've run through my bugs below</p>
 
 <h3>The Body</h3>
 
-<h4>The Ball</h4>
-<p>The ball itself didn't fit together on the first print I did (done in my father's 3D printer, so as to not monopolize a Prusa for hours and hours on end). The initial plan was to "just sand it down!"</p>
+<h3>The Ball</h3>
 
-<img src="IMG_0723.jpeg" alt="Me and Emma, sanding">
-<p><em>Sigh...</em></p>
+<p>The ball itself didn't fit together on the first print I did (done in my father's 3d printer, so as to not monopolize a Prusa for hours and hours on end). The initial plan was to "just sand it down!"</p>
 
-<p>I made my friend Emma help me, but we gave up on that plan pretty quickly. (Emma was such a blessing during this—major thanks. Remember that name; she'll come up again.) Eventually I decided to reprint. It still didn't work, and Nathan (yay Nathan!) suggested using a heat gun to fix the fit.</p>
+<img src="./Assets/IMG_2797.jpeg" alt="Me and Emma sanding over a trashcan">
 
-<img src="IMG_1070.jpeg" alt="The 3D printed ball showing heat-gun adjusted fit and assembly">
-<p><em>The ball after heat gun adjustment and assembly</em></p>
+<p>I made my friend Emma help me, but we gave up on that plan pretty quickly. (Emma was such a blessing during this, major thanks. Remember that name, she'll come up again.) Eventually I decided to reprint. It still didn't work, and Nathan (yay Nathan!) suggested using a heat gun to fix the fit.</p>
+
+<img src="./Assets/IMG_4495.jpeg" alt="The Ball fits together! Frankie is intrigued…">
 
 <p>There are holes left for heat inserts, but I unfortunately forgot them, and so the ball does not roll perfectly.</p>
 
-<h4>The Ball Bearings</h4>
+<h3>The Ballbearings</h3>
+
 <p>They were needed. Twice. I also needed to laser cut out a holder for one of them, so it could snap into place on the end of the motor pair. The other wound up needing a reprint because I messed up the margins.</p>
 
 <h3>The Brain</h3>
+
 <p>This nearly took me out.</p>
 
 <h4>The Battery!</h4>
-<p>This was the bane of my existence for several days on end. I first tried AA batteries, which needed much resoldering (I'm not the best at soldering; this is a recurring theme). It took me a while to realize that they were the reason my ball wasn't turning on, and, as I hadn't wanted to solder a protoboard before I had a working circuit, they were also the reason I didn't start working on the proto for quite some time. I switched to a 5V battery pack, which came with its own issues—mainly, that of needing a holder. I eventually (it took several iterations) came up with a design that fit the massive 5V and my protoboard, but I needed to heatgun it into shape before I could make it work. I was able to connect power by soldering wires to a female USB-C and plugging that in (as was Charles' suggestion).</p>
 
-<h4>The Protoboard</h4>
-<p><strong>Schematic:</strong> Xiao ESP32-C3 with pins 20, 10, 9, 8 connected to AIA, B, BIA, B in an L9110 motor driver, with power and ground connected to the Xiao, L9110, and a 5V battery pack.</p>
+<p>This was the bane of my existence for several days on end. I first tried AA batteries </p><img src="./Assets/IMG_1041.jpeg" alt="The battery…. Frankie is intrigued…"><p>
+, which needed much resoldering (I'm not the best at soldering, this is a recurring theme, but also  I was just convinced I’d done something wrong. Once they turned on a light, I started getting confused). It took me a while to realize that they were the reason my ball wasn't turning on, and, as I hadn't wanted to solder a protoboard before I had a working circuit, they were also the reason I didn't start working on the proto for quite some. I switched to a 5V battery pack, which came with it's own issues  — mainly, that of needing a holder. I eventually (it took several iterations) came up with a design that fit the massive 5V and my protoboard <INSERT: Brain Files>, but I needed to heatgun it into shape before I could make it work. I was able to connect power by soldering wires to a female usb-c and plugging that in.</p>
 
-<img src="IMG_1071.jpeg" alt="Completed protoboard circuit with Xiao microcontroller and L9110 motor driver">
-<p><em>Version 2 protoboard with components soldered</em></p>
+<h4>The ProtoBoard</h4>
 
-<p>The Protoboard was an issue. I shouldn't have trusted myself to not mess it up, honestly. <strong>Version One</strong> made Hannah look deeply concerned for a while (and, as it involved much masking tape, that's unsurprising). It worked for a few hours, before breaking on August 6th, but it was all I had (I hadn't been able to resolder a new one because, to save on space, I had to solder the Xiao directly on.)</p>
+<img src="./Assets/IMG_1055.jpeg" alt="The first proto">
+<p>The Protoboard was an issue. I shouldn't have trusted myself to not mess it up, honestly. Version One made the TA Hannah look deeply concerned for a while (and, as it involved much masking tape, that's unsurprising). It worked for a few hours, before breaking on August 6th, but it was all I had (I hadn't been able to resolder a new one because, to save on space, I had to solder the xiao directly on.)</p>
 
-<img src="IMG_1108.jpeg" alt="Protoboard during soldering process with components and tools">
-<p><em>Version One</em></p>
+<p>Luckily, after the fair, my friend Ethan was able to salvage the xiao, and I tried again. I started to resolder a new board, before letting Emma (who can solder better than I and who was bored) take over – which I am both very grateful for (as I hate soldering) but also regret (as she soldered a motor pin to the 3v3, resulting in a broken board). Afterwards, I fixed that, and took my soldering on the road to try and fix it</p>
 
-<p>Luckily, after the fair, Ethan was able to salvage the Xiao, and I tried again. I started to resolder a new board, before letting Emma (who can solder better than I and who was bored) take over—which I am both very grateful for (as I hate soldering) but also regret (as she soldered a motor pin to the 3V3, resulting in a broken board). Afterwards, I fixed that, and took my soldering on the road to try and fix it.</p>
+<img src="./Assets/IMG_1108.jpeg" alt="Soldering in Maine">
 
-<img src="IMG_2798.jpeg" alt="Soldering iron station during debugging work at home">
-<p><em>Debugging and soldering session in Maine</em></p>
+<img src="./Assets/IMG_2798.jpeg" alt="V2 proto">
 
-<p>I'm still debugging though—one motor won't turn on, but the working motor changes, as does the pin, depending on what else is plugged in. Still, one motor does move sometimes!</p>
-
-<img src="IMG_0773_2.jpeg" alt="Finished ball prototype with motor assembly integrated">
-<p><em>Ball testing with integrated motor drive</em></p>
+<p>I'm still debugging though — one motor won't turn on, but the working motor changes, as does the pin, depending on what else is plugged in. Still, one motor does move sometimes!</p>
 
 <h2>Future Plans</h2>
-<p><strong>Version Two</strong> will include:</p>
+
+<p>Version Two will include:</p>
+
 <ul>
-    <li>Food-safe PLA (the dog has not tested for reasons other than it not working)</li>
-    <li>Working motors (obviously)</li>
-    <li>Dog Tag that uses Bluetooth and ESP-NOW and RSSI as a signal-strength-distance-proxy to determine where to move</li>
-    <li>A set of three balls for maximum sheepiness</li>
+<li>Food safe PLA (the dog has not tested for reasons other than it not working)</li>
+<li>Working motors (obviously)</li>
+<li>Dog Tag that uses Bluetooth and ESP-NOW and RSSI as a signal-strength-distance-proxy to determine where to move</li>
+<li>A set of Three balls for maximum sheepiness.</li>
 </ul>
 
-<img src="IMG_1069.jpeg" alt="The final assembly being tested with collaborators">
-<p><em>Testing the final assembly with team members</em></p>
+<h2>3d printing files and code</h2>
 
-<h2>Special Thanks</h2>
-<ul>
-    <li><strong>Nathan</strong> - For the differential drive recommendation and countless godsend solutions</li>
-    <li><strong>Emma</strong> - For sanding, heat-gunning, and superior soldering skills</li>
-    <li><strong>Ethan</strong> - For salvaging the Xiao after the fair</li>
-    <li><strong>Charles</strong> - For the USB-C power solution</li>
-    <li><strong>Hannah</strong> - For her concerned looks (motivation!)</li>
-    <li><strong>Frankie</strong> - For being the inspiration and test subject</li>
-</ul>
+
+</body>
+</html>
+
+
 
 </body>
 </html>
