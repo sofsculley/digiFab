@@ -39,13 +39,13 @@
 
 <p>To change the center of mass, I planned to have X-Y-Z chambers, each with its own mass-moving pulley. My MVP was just to see if I could make one of the chambers. To do this, I 3d printed ends and a center moving piece, and hot glued metal rods in to act as guard rails. I didn't know we had the I hooked it up to a servo, which honestly, if attached better, probably would have worked — that said, due to being blind apparently, I didn't know that we had materials to make actual pulleys in the lab, and so the thick string and textured pipe made not the greatest of simple machine components.</p>
 
-<img src="./Assets/IMG_0723.jpeg" alt="MVP picture">
+<img src="./Assets/IMG_0723_2.jpeg" alt="MVP picture">
 
 <p>After MVP presentations, Nathan suggested I think about how this would work as all six pulleys, and if I had other thoughts on how to make the ball move. After spending quite a while in Thought Experiment land, I realized that any plan using weight change would need at least 3 servos (maybe 2, if I could get a full arc motion thing working), and would weigh quite an awful lot. After a bit, I wound up going back to Nathan and asking what he thought I should do, and he recommended doing a differential drive. I listened.</p>
 
 <h2>"Final" Version</h2>
 
-<img src="./Assets/IMG_0773_2.jpeg" alt="Diff Drive Image">
+<img src="./Assets/IMG_1070.jpeg" alt="Diff Drive Image">
 
 <p>The end project has a hamster-ball style propulsion mechanism. Making the drive was, theoretically, quite simple. In the end, it has two DC motors, glued together (with a spacer, obviously), with some 3d printed ball bearings and a brain. Attached are two wheels, with O-rings and hot glue added for friction (Nathan's idea, he had so many godsend solutions). The brain has an L9110 connected to a xiao and a 5V battery pack (D7-10 are attached to AIA-B1B, and they all share a power and ground). I did run into a few problems though, and, as such, my project is sitting sadly unworking. I've run through my bugs below</p>
 
@@ -84,8 +84,6 @@
 <p>Luckily, after the fair, my friend Ethan was able to salvage the xiao, and I tried again. I started to resolder a new board, before letting Emma (who can solder better than I and who was bored) take over – which I am both very grateful for (as I hate soldering) but also regret (as she soldered a motor pin to the 3v3, resulting in a broken board). Afterwards, I fixed that, and took my soldering on the road to try and fix it</p>
 
 <img src="./Assets/IMG_1108.jpeg" alt="Soldering in Maine">
-
-<img src="./Assets/IMG_2798.jpeg" alt="V2 proto">
 
 <p>I'm still debugging though — one motor won't turn on, but the working motor changes, as does the pin, depending on what else is plugged in. Still, one motor does move sometimes!</p>
 
